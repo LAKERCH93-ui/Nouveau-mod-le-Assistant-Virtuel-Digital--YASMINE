@@ -1,0 +1,155 @@
+{
+  "salutation": {
+    "exemples": [
+      "bonjour",
+      "salut",
+      "coucou",
+      "hello",
+      "bonsoir",
+      "yo",
+      "hey",
+      "salut yasmine",
+      "bonjour yasmine",
+      "coucou yasmine",
+      "hello yasmine",
+      "hey yasmine"
+    ],
+    "reponses": [
+      "Salut ! Moi c'est Yasmine 😊",
+      "Bonjour ! Comment puis-je t'aider ?"
+    ]
+  },
+  "etat": {
+    "exemples": [
+      "comment tu vas",
+      "ça va",
+      "tu vas bien",
+      "comment vas tu",
+      "comment ça va",
+      "tu te sens bien",
+      "tout va bien",
+      "comment te sens tu",
+      "tu vas bien aujourd'hui",
+      "comment vas tu aujourd'hui"
+    ],
+    "reponses": [
+      "Je vais bien, merci ! Et toi ?"
+    ]
+  },
+  "identite": {
+    "exemples": [
+      "qui es tu",
+      "comment tu t'appelles",
+      "quel est ton nom",
+      "présente toi",
+      "tu t'appelles comment",
+      "c'est quoi ton prénom",
+      "quel est ton prénom",
+      "donne moi ton prénom",
+      "comment dois je t'appeler"
+    ],
+    "reponses": [
+      "Je m'appelle Yasmine. Je suis une IA créée en Python."
+    ]
+  },
+  "createur": {
+    "exemples": [
+      "qui t'a créée",
+      "qui est ton créateur",
+      "qui t'a programmée",
+      "qui t'a développée",
+      "qui t'a faite",
+      "qui est derrière toi",
+      "qui t'a conçue",
+      "qui t'a fabriquée"
+    ],
+    "reponses": [
+      "Je suis développée ici avec toi, étape par étape, en Python."
+    ]
+  },
+  "capacites": {
+    "exemples": [
+      "que sais tu faire",
+      "tu peux faire quoi",
+      "quelles sont tes capacités",
+      "à quoi tu sers",
+      "qu'est ce que tu sais faire",
+      "quelles choses peux tu faire",
+      "tu sais faire quoi exactement",
+      "qu'est ce que tu peux faire exactement"
+    ],
+    "reponses": [
+      "Pour l'instant, je sais reconnaître plusieurs types de demandes et y répondre."
+    ]
+  },
+  "remerciement": {
+    "exemples": [
+      "merci",
+      "merci beaucoup",
+      "je te remercie",
+      "c'est gentil",
+      "merci pour ton aide",
+      "super merci",
+      "merci yasmine",
+      "merci pour tout",
+      "un grand merci"
+    ],
+    "reponses": [
+      "Avec plaisir !"
+    ]
+  },
+  "au_revoir": {
+    "exemples": [
+      "au revoir",
+      "à bientôt",
+      "bye",
+      "bonne nuit",
+      "à plus",
+      "on se reparle plus tard",
+      "ciao",
+      "à plus tard",
+      "à la prochaine"
+    ],
+    "reponses": [
+      "À bientôt ! 👋"
+    ]
+  },
+  "maths": {
+    "exemples": [
+      "explique moi les maths",
+      "aide moi en maths",
+      "je veux faire des mathématiques",
+      "explique moi une dérivée",
+      "explique moi une primitive",
+      "explique moi une intégrale",
+      "aide moi avec une équation",
+      "peux tu m'expliquer une intégrale",
+      "peux tu m'expliquer une dérivée",
+      "je veux comprendre les intégrales",
+      "je veux apprendre les maths"
+    ],
+    "reponses": [
+      "Oui, je peux essayer de t'aider en maths."
+    ]
+  },
+  "informatique": {
+    "exemples": [
+      "aide moi en informatique",
+      "parle moi de python",
+      "explique moi python",
+      "je veux apprendre à programmer",
+      "aide moi à coder",
+      "parle moi de programmation",
+      "explique moi le code",
+      "je veux apprendre python",
+      "je veux apprendre le python",
+      "apprends moi python",
+      "peux tu m'aider à coder",
+      "Je veux que tu m'aides sur un projet en Informatique"
+    ],
+    "reponses": [
+      "Oui ! On peut travailler sur Python, le code et l'informatique.",
+      "Dis moi de quel projet s'agit-il?"
+    ]
+  }
+}

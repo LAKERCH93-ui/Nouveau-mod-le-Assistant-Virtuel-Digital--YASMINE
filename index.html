@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07131a" />
+    <meta name="description" content="Interface vocale privée de Yasmine." />
+    <title>Yasmine — Assistant vocal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Yasmine, accueil">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>YASMINE<span class="brand-accent">/OS</span></span>
+        </a>
+        <div class="topbar-right">
+          <span class="connection"><i></i> CANAL LOCAL</span>
+          <button class="icon-button" id="sound-toggle" type="button" aria-label="Désactiver la voix" title="Activer ou désactiver la voix">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10H4Zm12.5 2a4.5 4.5 0 0 0-2-3.74v7.48A4.5 4.5 0 0 0 16.5 12Zm0-8.45v2.06a7 7 0 0 1 0 12.78v2.06a9 9 0 0 0 0-16.9Z"/></svg>
+          </button>
+          <button class="icon-button" id="lock-button" type="button" aria-label="Verrouiller Yasmine" title="Verrouiller Yasmine">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9h-1V7a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2Zm-6 8a2 2 0 1 1 2-2 2 2 0 0 1-2 2Zm3-8H9V7a3 3 0 0 1 6 0v2Z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="assistant-stage" aria-labelledby="stage-title">
+        <div class="stage-copy">
+          <p class="eyebrow"><span></span> ASSISTANT PERSONNEL</p>
+          <h1 id="stage-title">Bonjour<span class="cursor">_</span></h1>
+          <p class="stage-description">Je suis Yasmine. Parlez naturellement, ou écrivez-moi votre demande.</p>
+          <div class="quick-actions" aria-label="Suggestions">
+            <button type="button" data-prompt="Fais-moi un briefing">Briefing</button>
+            <button type="button" data-prompt="Quelle heure est-il ?">Heure</button>
+            <button type="button" data-prompt="Ouvre VS Code">Ouvrir VS Code</button>
+            <button type="button" data-prompt="Que peux-tu faire ?">Aide</button>
+          </div>
+        </div>
+
+        <div class="orb-area" aria-hidden="true">
+          <div class="radar radar-one"></div>
+          <div class="radar radar-two"></div>
+          <div class="orb"><div class="orb-core"></div></div>
+          <div class="orbit orbit-a"><i></i></div>
+          <div class="orbit orbit-b"><i></i></div>
+          <div class="orb-label"><span>YASMINE</span><small id="orb-status">EN VEILLE</small></div>
+        </div>
+      </section>
+
+      <section class="conversation" aria-label="Conversation avec Yasmine">
+        <div class="conversation-header">
+          <p><span class="live-dot"></span> TRANSCRIPTION EN DIRECT</p>
+          <button id="clear-chat" type="button">Effacer</button>
+        </div>
+        <div class="messages" id="messages" aria-live="polite" aria-relevant="additions">
+          <article class="message assistant-message">
+            <span class="message-avatar">Y</span>
+            <div><p class="message-name">YASMINE <time>MAINTENANT</time></p><p>Systèmes prêts. Comment puis-je vous aider ?</p></div>
+          </article>
+        </div>
+      </section>
+
+      <form class="composer" id="composer">
+        <label class="sr-only" for="message-input">Votre message</label>
+        <input id="message-input" type="text" autocomplete="off" placeholder="Écrivez votre demande…" />
+        <button class="send-button" type="submit" aria-label="Envoyer le message">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12 15-8-4.7 16-3.1-6.1L4 12Zm8.1.2 2.8 2.6 1.7-6.1-4.5 3.5Z"/></svg>
+        </button>
+        <button class="mic-button" id="mic-button" type="button" aria-label="Parler à Yasmine">
+          <span class="mic-ring"></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3.5 3.5 0 0 0 3.5-3.5v-5a3.5 3.5 0 0 0-7 0v5A3.5 3.5 0 0 0 12 15Zm6-3.5h-2A4 4 0 0 1 8 11.5H6a6 6 0 0 0 5 5.91V20H8v2h8v-2h-3v-2.59A6 6 0 0 0 18 11.5Z"/></svg>
+          <span id="mic-label">PARLER</span>
+        </button>
+      </form>
+      <p class="privacy-note">Serveur local · <button id="privacy-button" type="button">À propos de la voix et de la sécurité</button></p>
+
+      <section class="control-deck" aria-label="Centre de contrôle de Yasmine">
+        <div class="deck-tabs" role="tablist" aria-label="Fonctions de Yasmine">
+          <button class="deck-tab active" type="button" role="tab" aria-selected="true" aria-controls="agent-panel" data-tab="agent-panel">Agent</button>
+          <button class="deck-tab" type="button" role="tab" aria-selected="false" aria-controls="training-panel" data-tab="training-panel">Apprendre</button>
+          <button class="deck-tab" type="button" role="tab" aria-selected="false" aria-controls="reminders-panel" data-tab="reminders-panel">Rappels</button>
+          <button class="deck-tab" type="button" role="tab" aria-selected="false" aria-controls="intelligence-panel" data-tab="intelligence-panel">Intelligence</button>
+        </div>
+
+        <section class="deck-panel active" id="agent-panel" role="tabpanel">
+          <div class="panel-intro"><div><p class="eyebrow"><span></span> YASMINE AGENT OS</p><h2>Le cockpit de ton agent.</h2><p>Un cerveau, une mémoire, des compétences et des connexions. Les actions sensibles restent toujours sous ton contrôle.</p></div><p class="data-count" id="agent-identity">Chargement…</p></div>
+          <div class="agent-metrics" aria-live="polite">
+            <article><span>CERVEAU</span><strong id="agent-brain">—</strong><small id="agent-model">—</small></article>
+            <article><span>MÉMOIRE</span><strong id="agent-memory">—</strong><small id="agent-profile">—</small></article>
+            <article><span>COMPÉTENCES</span><strong id="agent-skills-total">—</strong><small>Modules locaux</small></article>
+          </div>
+          <div class="agent-grid">
+            <section class="agent-section"><div class="section-heading"><p class="eyebrow"><span></span> COMPÉTENCES</p><p>Active les briques de ton agent.</p></div><div class="skills-list" id="skills-list"></div></section>
+            <section class="agent-section"><div class="section-heading"><p class="eyebrow"><span></span> CONNEXIONS</p><p>À relier uniquement quand tu le décides.</p></div><div class="connections-list" id="connections-list"></div></section>
+          </div>
+          <p class="agent-note">Prochaine étape : relier ton agenda et tes e-mails avec une autorisation par service. Aucun compte n'est connecté par défaut.</p>
+        </section>
+
+        <section class="deck-panel" id="training-panel" role="tabpanel" hidden>
+          <div class="panel-intro"><div><p class="eyebrow"><span></span> APPRENTISSAGE</p><h2>Apprends-lui tes formulations.</h2><p>Voici toutes les phrases qui servent au classifieur local. Ajoute une phrase, une intention et la réponse attendue : le modèle est réentraîné tout de suite.</p></div><p class="data-count" id="training-count">Chargement…</p></div>
+          <div class="training-layout">
+            <div class="intentions-list" id="intentions-list" aria-live="polite"></div>
+            <form class="train-form" id="train-form">
+              <h3>Nouvel exemple</h3>
+              <label>Intention <input id="intent-input" name="intention" required maxlength="40" placeholder="ex. musique" pattern="[A-Za-zÀ-ÿ0-9 _-]+" /></label>
+              <label>Phrase à reconnaître <textarea id="example-input" name="exemple" required maxlength="500" placeholder="ex. lance ma playlist de concentration"></textarea></label>
+              <label>Réponse souhaitée <textarea id="answer-input" name="reponse" maxlength="500" placeholder="ex. J’ouvre votre playlist de concentration."></textarea></label>
+              <button class="primary-action" type="submit">Apprendre et réentraîner</button>
+              <p class="form-feedback" id="training-feedback" role="status"></p>
+            </form>
+          </div>
+        </section>
+
+        <section class="deck-panel" id="reminders-panel" role="tabpanel" hidden>
+          <div class="panel-intro"><div><p class="eyebrow"><span></span> ORGANISATION</p><h2>Ne perds plus une tâche.</h2><p>Dis ou écris : <strong>« Rappelle-moi dans 30 minutes de sortir le pain »</strong>. Yasmine conserve le rappel sur ton PC et le prononce dès qu’il est dû.</p></div></div>
+          <div class="reminder-command"><span>EXEMPLE</span><code>Rappelle-moi dans 2 heures de préparer la réunion</code><button type="button" data-prompt="Rappelle-moi dans 2 heures de préparer la réunion">Essayer</button></div>
+          <p class="reminder-help">Demande ensuite <strong>« mes rappels »</strong> pour connaître les tâches à venir. Le navigateur doit rester ouvert avec le serveur Yasmine actif afin qu’elle puisse te les annoncer.</p>
+        </section>
+
+        <section class="deck-panel" id="intelligence-panel" role="tabpanel" hidden>
+          <div class="panel-intro"><div><p class="eyebrow"><span></span> MOTEUR DE RAISONNEMENT</p><h2>Ajoute un modèle local pour les demandes complexes.</h2><p>Les phrases d’entraînement créent des commandes. Pour discuter, programmer, analyser ou résoudre des problèmes variés, connecte un modèle Ollama exécuté sur ton propre PC.</p></div></div>
+          <form class="settings-form" id="settings-form">
+            <label class="switch-label"><input id="llm-enabled" type="checkbox" /><span class="switch"></span> Utiliser le modèle local pour les demandes non reconnues</label>
+            <div class="settings-grid"><label>Adresse Ollama <input id="ollama-url" type="url" value="http://127.0.0.1:11434" /></label><label>Nom du modèle <input id="ollama-model" type="text" placeholder="ex. llama3.2" maxlength="100" /></label></div>
+            <label class="switch-label"><input id="continuous-listening" type="checkbox" /><span class="switch"></span> Écoute continue après activation du micro</label>
+            <p class="voice-disclaimer">La reconnaissance vocale transcrit ce que tu dis. Elle ne vérifie pas encore ton identité biométrique : le mot de passe reste la protection d’accès.</p>
+            <button class="primary-action" type="submit">Enregistrer les réglages</button>
+            <p class="form-feedback" id="settings-feedback" role="status"></p>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <section class="lock-screen" id="lock-screen" aria-labelledby="lock-title" hidden>
+      <div class="lock-card">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <p class="eyebrow"><span></span> ACCÈS LOCAL PROTÉGÉ</p>
+        <h2 id="lock-title">Activez Yasmine</h2>
+        <p id="lock-description">Saisissez votre mot de passe pour reprendre la conversation.</p>
+        <form id="unlock-form">
+          <label>Mot de passe <input id="password-input" type="password" autocomplete="current-password" required minlength="8" /></label>
+          <label id="confirm-wrap" hidden>Confirmer le mot de passe <input id="password-confirm" type="password" autocomplete="new-password" minlength="8" /></label>
+          <button class="primary-action" type="submit" id="unlock-submit">Déverrouiller</button>
+          <p class="form-feedback" id="unlock-feedback" role="alert"></p>
+        </form>
+        <p class="lock-detail">Après une heure sans interaction, Yasmine se verrouille automatiquement. Le mot de passe n’est jamais conservé en clair.</p>
+      </div>
+    </section>
+
+    <dialog id="info-dialog">
+      <button class="dialog-close" type="button" aria-label="Fermer">×</button>
+      <p class="eyebrow"><span></span> CONFIDENTIALITÉ</p>
+      <h2>Votre voix reste sous votre contrôle.</h2>
+      <p>La reconnaissance vocale utilise les fonctions de votre navigateur. Yasmine s’exécute sur votre ordinateur : ses notes, rappels, paramètres et mot de passe restent locaux.</p>
+      <p>La transcription vocale reconnaît les mots, pas l’identité du locuteur. Une véritable reconnaissance biométrique de voix nécessite un modèle spécialisé et un consentement explicite.</p>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
